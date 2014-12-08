@@ -2,6 +2,7 @@
  * Module dependencies
  */
 
+var EventEmitter = require('events');
 var assert = require('assert');
 var sinon = require('sinon');
 var proxyquire = require('proxyquireify')(require);
@@ -24,12 +25,19 @@ describe('common-vimeo', function() {
     document.body.appendChild(vimeoEmbed);
 
     /**
-     * Stub out Vimeo player wrapper.
+     * Create new `playerStub`
+     *
+     * Implements event system for binding only. Unbinding not supported.
      */
 
-    playerStub = {
-      api: sinon.stub()
-    };
+    playerStub = new EventEmitter();
+
+    /**
+     * Methods
+     */
+
+    playerStub.addEvent = playerStub.addListener; // real
+    playerStub.api = sinon.spy();
     
     window.Froogaloop = sinon.stub().returns(playerStub);
 
@@ -79,6 +87,49 @@ describe('common-vimeo', function() {
       player.pause();
 
       assert.ok(playerStub.api.calledWith('pause'));
+    });
+  });
+
+  describe('events', function() {
+    it('should emit `ready` when loaded', function(done) {
+      var player = new Vimeo('vimeo-embed');
+      player.on('ready', done);
+
+      playerStub.emit('ready');
+    });
+
+    /**
+     * Event bindings happen inside of `ready` event, so we 
+     * need to manually trigger it each time to make sure following
+     * events & handlers are bound.
+     */
+    
+    it('should emit `play` when playing', function(done) {
+      var player = new Vimeo('vimeo-embed');
+
+      player.on('play', done);
+
+      // event bindings happen inside of `ready` event.
+      playerStub.emit('ready');
+      playerStub.emit('play');
+    });
+
+    it('should emit `pause` when paused', function(done) {
+      var player = new Vimeo('vimeo-embed');
+
+      player.on('pause', done);
+      
+      playerStub.emit('ready');
+      playerStub.emit('pause');
+    });
+
+    it('should emit `end` when finished', function(done) {
+      var player = new Vimeo('vimeo-embed');
+
+      player.on('end', done);
+
+      playerStub.emit('ready');
+      playerStub.emit('finish');
     });
   });
 });

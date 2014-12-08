@@ -2,6 +2,7 @@
  * Module dependencies
  */
 
+var EventEmitter = require('events');
 var loadAPI = require('./lib/load-api');
 var prepareEmbed = require('./lib/prepare-embed');
 
@@ -24,6 +25,12 @@ function Vimeo(id) {
   prepareEmbed(id);
   this.createPlayer(id);
 }
+
+/**
+ * Mixin events
+ */
+
+Vimeo.prototype = new EventEmitter();
 
 /**
  * Play the video.
@@ -57,5 +64,33 @@ Vimeo.prototype.createPlayer = function(id) {
   
   sdk(function(err, Froogaloop) {
     self.player = window.Froogaloop(id);
+    self.bindEvents();
   });
 };
+
+/**
+ * Bind events to player
+ *
+ * @api private
+ */
+
+Vimeo.prototype.bindEvents = function() {
+  var self = this;
+
+  self.player.addEvent('ready', function() {
+    self.emit('ready');
+
+    self.player.addEvent('play', function() {
+      self.emit('play');
+    });
+
+    self.player.addEvent('pause', function() {
+      self.emit('pause');
+    });
+
+    self.player.addEvent('finish', function() {
+      self.emit('end');
+    });
+  });
+};
+
