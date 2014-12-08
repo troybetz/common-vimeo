@@ -1,0 +1,33 @@
+{
+  "name": "common-vimeo",
+  "version": "0.0.0",
+  "description": "simple wrapper over the Vimeo JavaScript API",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:compedit/common-vimeo.git"
+  },
+  "keywords": [
+    "vimeo",
+    "wrapper",
+    "embed",
+    "common"
+  ],
+  "author": "troy betz <troybetz@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compedit/common-vimeo/issues"
+  },
+  "homepage": "https://github.com/compedit/common-vimeo",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "autoprefixer": "^4.0.0",
+    "browserify": "^7.0.0",
+    "mocha": "^2.0.1",
+    "proxyquireify": "^1.1.0",
+    "sinon": "^1.12.1",
+    "watchify": "^2.1.1"
+  }
+}
