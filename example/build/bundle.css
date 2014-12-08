@@ -1,0 +1,191 @@
+/**
+ * base styles
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #222;
+  font-family: Arial;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #3498db;
+  outline: none;
+  text-decoration: underline;
+}
+
+header {
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+header h1 {
+  margin: 2.2em 0.5em 0.9em 0.5em;
+  font-size: 2.5em;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+header p {
+  letter-spacing: 1px;
+}
+
+footer {
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  text-align: center;
+}
+
+.github-button {
+  margin: 6em 0;
+  width: 75px;
+  height: 30px;
+}
+
+.content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-basis: 60%;
+      -ms-flex-preferred-size: 60%;
+          flex-basis: 60%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+/**
+ * custom styles
+ */
+
+.vimeo-container {
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+#vimeo-embed {
+  max-width: 100%;
+}
+
+.btn {
+  text-align: center;
+  margin: 2em 1em;
+}
+
+.btn {
+  padding: 1em 3em;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #168add), color-stop(100%, #007ee5));
+  border: 1px solid #0c6ebe;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+.btn:hover,
+.btn:focus {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #168eef), color-stop(100%, #007ee5));
+  outline: none;
+}
+
+.btn:active {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1b80d3), color-stop(100%, #0a74cb));
+}
+
+.btn--destroy {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e74c3c), color-stop(100%, #c0392b));
+  border-color: #A72012;
+}
+
+.btn--destroy:hover,
+.btn--destroy:focus {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EF5444), color-stop(100%, #c0392b));
+  outline: none;
+}
+
+.btn--destroy:active {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #D33828), color-stop(100%, #BE2313));
+}
+
+/**
+ * responsive things
+ */
+
+@media(max-width: 1000px) {
+  .content {
+    -webkit-flex-basis: 80%;
+        -ms-flex-preferred-size: 80%;
+            flex-basis: 80%;
+  }
+}
+
+@media(max-width: 700px) {
+  .content {
+    -webkit-flex-basis: 90%;
+        -ms-flex-preferred-size: 90%;
+            flex-basis: 90%;
+  }
+
+  .btn {
+    margin: 2em 0.5em;
+  }
+}
+
+@media(max-width: 500px) {
+  .btn {
+    width: 100%;
+    margin: 0.5em 0;
+  }
+}
