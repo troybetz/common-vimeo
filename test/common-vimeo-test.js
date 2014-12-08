@@ -7,6 +7,7 @@ var sinon = require('sinon');
 var proxyquire = require('proxyquireify')(require);
 
 var vimeoEmbed;
+var playerStub;
 var loadAPIStub;
 var Vimeo;
 
@@ -25,8 +26,12 @@ describe('common-vimeo', function() {
     /**
      * Stub out Vimeo player wrapper.
      */
+
+    playerStub = {
+      api: sinon.stub()
+    };
     
-    window.Froogaloop = sinon.stub();
+    window.Froogaloop = sinon.stub().returns(playerStub);
 
     /**
      * Stub out load-api, return our api stub
@@ -58,6 +63,22 @@ describe('common-vimeo', function() {
     it('should create a new Froogaloop instance', function() {
       var player = new Vimeo('vimeo-embed');
       assert.ok(Froogaloop.calledWith('vimeo-embed'));
+    });
+  });
+
+  describe('functionality', function() {
+    it('can play a track', function() {
+      var player = new Vimeo('vimeo-embed');
+      player.play();
+
+      assert.ok(playerStub.api.calledWith('play'));
+    });
+
+    it('can pause a track', function() {
+      var player = new Vimeo('vimeo-embed');
+      player.pause();
+
+      assert.ok(playerStub.api.calledWith('pause'));
     });
   });
 });

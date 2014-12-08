@@ -26,6 +26,26 @@ function Vimeo(id) {
 }
 
 /**
+ * Play the video.
+ *
+ * @api public
+ */
+
+Vimeo.prototype.play = function() {
+  this.player.api('play');
+};
+
+/**
+ * Pause the video.
+ *
+ * @api public
+ */
+
+Vimeo.prototype.pause = function() {
+  this.player.api('pause');
+};
+
+/**
  * Create a controller for the embedded video
  *
  * @param {String} id of embedded video
