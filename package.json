@@ -25,6 +25,7 @@
   "devDependencies": {
     "autoprefixer": "^4.0.0",
     "browserify": "^7.0.0",
+    "http-server": "^0.7.4",
     "mocha": "^2.0.1",
     "proxyquireify": "^1.1.0",
     "sinon": "^1.12.1",
