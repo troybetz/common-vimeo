@@ -37,6 +37,7 @@ describe('common-vimeo', function() {
      */
 
     playerStub.addEvent = playerStub.addListener; // real
+    playerStub.removeEvent = sinon.spy();
     playerStub.api = sinon.spy();
     
     window.Froogaloop = sinon.stub().returns(playerStub);
@@ -130,6 +131,22 @@ describe('common-vimeo', function() {
 
       playerStub.emit('ready');
       playerStub.emit('finish');
+    });
+  });
+
+  describe('destruction', function() {
+    it('should remove player event listeners', function() {
+      var player = new Vimeo('vimeo-embed');
+      player.destroy();
+
+      assert.equal(playerStub.removeEvent.callCount, 4);
+    });
+
+    it('should delete its internal player', function() {
+      var player = new Vimeo('vimeo-embed');
+      player.destroy();
+
+      assert.equal(player.player, undefined);
     });
   });
 });

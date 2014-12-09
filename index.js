@@ -53,6 +53,17 @@ Vimeo.prototype.pause = function() {
 };
 
 /**
+ * Destroy a player
+ *
+ * @api public
+ */
+
+Vimeo.prototype.destroy = function() {
+  this.unbindEvents();
+  delete this.player;
+};
+
+/**
  * Create a controller for the embedded video
  *
  * @param {String} id of embedded video
@@ -94,3 +105,15 @@ Vimeo.prototype.bindEvents = function() {
   });
 };
 
+/**
+ * Unbind all player events
+ *
+ * @api private
+ */
+
+Vimeo.prototype.unbindEvents = function() {
+  this.player.removeEvent('ready');
+  this.player.removeEvent('play');
+  this.player.removeEvent('pause');
+  this.player.removeEvent('finish');
+};
