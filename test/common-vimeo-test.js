@@ -31,14 +31,13 @@ describe('common-vimeo', function() {
      */
 
     playerStub = new EventEmitter();
-
-    /**
-     * Methods
-     */
-
     playerStub.addEvent = playerStub.addListener; // real
     playerStub.removeEvent = sinon.spy();
     playerStub.api = sinon.spy();
+
+    /**
+     * Vimeo iframe wrapper API
+     */
     
     window.Froogaloop = sinon.stub().returns(playerStub);
 
@@ -110,7 +109,6 @@ describe('common-vimeo', function() {
 
       player.on('play', done);
 
-      // event bindings happen inside of `ready` event.
       playerStub.emit('ready');
       playerStub.emit('play');
     });

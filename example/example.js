@@ -16,7 +16,7 @@ window.player = new Vimeo('vimeo-embed');
 
 player.on('ready', function() {
   console.log('READY');
-  console.log('player: ', player);
+  console.warn('Chill: errors from froogaloop and CordivaCommunicationsProxy are normal.');
 
   /**
    * Bind button controls
@@ -43,7 +43,6 @@ player.on('end', function() {
  * Player controls
  */
 
-
 function bindPlay(player) {
   var play = document.getElementById('play');
 
@@ -65,6 +64,8 @@ function bindDestroy(player) {
 
   destroy.addEventListener('click', function() {
     player.destroy();
+    console.log('DESTROYED');
+    console.warn('Events & methods are no longer bound to player.');
   });
 }
 

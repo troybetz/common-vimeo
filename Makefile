@@ -8,7 +8,7 @@ test/bundle.js: test/*-test.js
 	$(BIN)/watchify -p proxyquireify/plugin $^ -o $@
 
 example: example/build/bundle.js example/build/bundle.css
-	$(BIN)/http-server -s example
+	$(BIN)/http-server example --silent
 
 example/build/bundle.js: example/example.js
 	$(BIN)/browserify $^ > $@

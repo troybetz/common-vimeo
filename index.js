@@ -15,7 +15,7 @@ var sdk;
 module.exports = Vimeo;
 
 /**
- * Create new `Vimeo` player
+ * Create new `Vimeo` controller
  *
  * @param {String} id of embedded video
  */
@@ -23,7 +23,7 @@ module.exports = Vimeo;
 function Vimeo(id) {
   sdk = loadAPI();
   prepareEmbed(id);
-  this.createPlayer(id);
+  this.attachToEmbed(id);
 }
 
 /**
@@ -53,7 +53,8 @@ Vimeo.prototype.pause = function() {
 };
 
 /**
- * Destroy a player
+ * Remove all event handlers and free up internal player for
+ * garbage collection.
  *
  * @api public
  */
@@ -64,13 +65,13 @@ Vimeo.prototype.destroy = function() {
 };
 
 /**
- * Create a controller for the embedded video
+ * Attach a controller to the embedded video
  *
  * @param {String} id of embedded video
  * @api private
  */
 
-Vimeo.prototype.createPlayer = function(id) {
+Vimeo.prototype.attachToEmbed = function(id) {
   var self = this;
   
   sdk(function(err, Froogaloop) {
@@ -80,7 +81,7 @@ Vimeo.prototype.createPlayer = function(id) {
 };
 
 /**
- * Bind events to player
+ * Bind player events
  *
  * @api private
  */
