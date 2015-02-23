@@ -14,7 +14,7 @@ $ npm install common-vimeo
 
 ```js
 var Vimeo = require('common-vimeo');
-var player = Vimeo('id-of-iframe');
+var player = new Vimeo('id-of-iframe');
 
 player.on('ready', function() {
   player.play();
