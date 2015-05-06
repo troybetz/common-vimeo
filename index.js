@@ -2,7 +2,8 @@
  * Module dependencies
  */
 
-var EventEmitter = require('events');
+var EventEmitter = require('events').EventEmitter;
+var util = require('util');
 var loadAPI = require('./lib/load-api');
 var prepareEmbed = require('./lib/prepare-embed');
 
@@ -30,7 +31,7 @@ function Vimeo(id) {
  * Mixin events
  */
 
-Vimeo.prototype = new EventEmitter();
+util.inherits(Vimeo, EventEmitter);
 
 /**
  * Play the video.
