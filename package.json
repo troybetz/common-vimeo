@@ -1,6 +1,6 @@
 {
   "name": "common-vimeo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple wrapper over the Vimeo JavaScript API",
   "main": "index.js",
   "repository": {
